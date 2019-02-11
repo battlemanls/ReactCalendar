@@ -1,0 +1,115 @@
+.Calendar{
+    border: 1px;
+}
+
+.tableCalendar{
+    table-layout: fixed;
+    border: 3px solid;
+    width: 50%; /* Ширина таблицы в процентах */
+    height: 100px;
+}
+.tableControlCalendar{
+    table-layout: fixed;
+    border: 0px;
+    width: 50%; /* Ширина таблицы в процентах */
+}
+
+.td-control{
+    text-align: center;
+    padding: 10px 15px;
+    height: 60px;
+}
+
+.col1 {
+    width: 700px; /* Ширина ячейки */
+}
+
+th {
+    border: 1px solid;
+    text-align: center;
+    background-color: aliceblue;
+    padding: 10px 15px;
+}
+
+
+td:nth-of-type(6) {
+
+    color:  red;
+    border-color: black;
+
+}
+td:nth-of-type(7) {
+
+    color: red;
+    border-color: black;
+}
+
+
+.td-1 {
+    border: 1px solid;
+    text-align: center;
+    background-color: white;
+    padding: 10px 15px;
+    height: 60px;
+
+}
+
+.td-2 {
+    border: 1px solid;
+    text-align: center;
+    background-color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+    height: 60px;
+
+}
+
+.td-3 {
+    border: 1px solid;
+    text-align: center;
+    padding: 10px 15px;
+    background-color: lightgreen;
+    font-weight: bold;
+    height: 60px;
+
+}
+
+.td-4 {
+    border: 1px solid;
+    text-align: center;
+    padding: 10px 15px;
+    background-color: lightgreen;
+    height: 60px;
+
+}
+.td-5 {
+    border: 0px solid;
+    text-align: center;
+    padding: 10px 15px;
+    height: 60px;
+
+}
+
+.point-day{
+    color: red;
+    padding: 0px;
+    margin: 0px;
+    size: 0px;
+    height: 10px;
+}
+
+.button-1 {
+    background-color: lightgreen;
+    border-radius: 8px;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.button-1:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+
+
