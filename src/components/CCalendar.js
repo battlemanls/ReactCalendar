@@ -5,213 +5,214 @@ import localization from 'moment/locale/ru'
 import './style/CCalendar.css'
 
 class CCalendar extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.allMonth = true
         this.state = { // объект для хранения данных каледаря
             id: "",
             day: "",
+            mday: "",
             month: "",
             year: "",
             week: "",
             nday: "",
-            aday: [] // массив для хранения дней месяца
+            aday: [], // массив для хранения дней месяца
+            events: this.props.data
         }
-
+        this.pppas = 0
         this.nextMonth = this.nextMonth.bind(this);
         this.previousMonth = this.previousMonth.bind(this);
         this.nowMonth = this.nowMonth.bind(this)
-        this.sizeCalendar = this.sizeCalendar.bind(this)
+        this.tmCalendar = this.tmCalendar.bind(this)
+        this.twCalendar = this.twCalendar.bind(this)
         this.nowMonth() // определение сегодняшней даты
+        this.cloneDate()
     }
 
-    nowMonth(){
+    activeMenu(){ // выдвигающееся меню
+        var menuElem = document.getElementById('layer2');
+        menuElem.classList.toggle('open');
+    }
+
+    cloneDate(){ // копируем дату
+        this.cloneD = this.nowDate.clone()
+    }
+
+    nowDay(){ // обновляем отображение даты
+        this.setState({day: this.nowDate.format('dddd')})
+        this.setState({month: this.nowDate.format('MMMM')})
+        this.setState({year: this.nowDate.format('YYYY')})
+        this.setState({nday: this.nowDate.daysInMonth()})
+
+}
+
+    nowMonth(){ // сегодняшня дата
         moment().locale("ru", localization).format('LLL') // установка русского формата календаря
         this.nowDate = moment()
-        this.setState({aday: this.generateDate(this.dataCalendar())})
-        this.setState({day: this.nowDate.format('dddd')})
-        this.setState({month: this.nowDate.format('MMMM')})
-        this.setState({year: this.nowDate.format('YYYY')})
-        this.setState({nday: this.nowDate.daysInMonth()})
+        this.nowDay()
     }
 
-    sizeCalendar(){ // Тип календаря
-        if(this.allMonth===true){
-            this.allMonth=false // на неделю
-        }
-        else{
+    tmCalendar(){ // Тип календаря месяц
             this.allMonth=true // на месяц
-        }
-        this.setState({day: this.nowDate.format('dddd')})
-        this.setState({month: this.nowDate.format('MMMM')})
-        this.setState({year: this.nowDate.format('YYYY')})
-        this.setState({nday: this.nowDate.daysInMonth()})
+        this.nowDay()
+        this.activeMenu()
     }
 
-    nextMonth(){
+
+    twCalendar(){ // Тип календаря неделя
+        this.allMonth=false // на неделю
+        if (this.nowDate.format("MM")==moment().format("MM")&&this.nowDate.format("YYYY")==moment().format("YYYY")){
+            this.nowDate = moment()
+        }
+        this.nowDay()
+        this.activeMenu()
+    }
+
+    nextMonth(){ // показать след месяц/неделю
         if(this.allMonth===true) {
+            this.nowDate.startOf("month")
             this.nowDate.month((this.nowDate.format('M'))) // +1 месяц
         }
         else{
-            this.nowDate.week(Number(this.nowDate.format('W'))+1) // +1 неделя
+            this.nowDate.add(0, 'days');
         }
-        this.setState({aday: this.generateDate(this.dataCalendar())})
-        this.setState({day: this.nowDate.format('dddd')})
-        this.setState({month: this.nowDate.format('MMMM')})
-        this.setState({year: this.nowDate.format('YYYY')})
-        this.setState({nday: this.nowDate.daysInMonth()})
-    }
+        this.nowDay()
+        }
 
-    previousMonth(){
+    previousMonth(){ //показать предедущий месяц/неделю
         if(this.allMonth===true) {
             this.nowDate.month((this.nowDate.format('M'))-2) // -1 месяц
         }
         else{
-            this.nowDate.week(Number(this.nowDate.format('W'))-1) // -1 неделя
+            this.nowDate.subtract(8, 'days')
         }
-        this.setState({aday: this.generateDate(this.dataCalendar())})
-        this.setState({day: this.nowDate.format('dddd')})
-        this.setState({month: this.nowDate.format('MMMM')})
-        this.setState({year: this.nowDate.format('YYYY')})
-        this.setState({nday: this.nowDate.daysInMonth()})
+        this.nowDay()
     }
 
-    dataCalendar(){ // Определяем начало заполнения календаря в таблице (отступ)
-        var daysIndent = 0
-        var newCalendar = moment([ this.nowDate.year(), this.nowDate.month(), 1]) //определяем дни недели в заданом месяце
-        switch (newCalendar.format('dddd')){
-            case 'понедельник':
-                daysIndent = 0;
-                break;
-            case 'вторник':
-                daysIndent = 1;
-                break;
-            case 'среда':
-                daysIndent = 2;
-                break;
-            case 'четверг':
-                daysIndent = 3;
-                break;
-            case 'пятница':
-                daysIndent = 4;
-                break;
-            case 'суббота':
-                daysIndent = 5;
-                break;
-            case 'воскресенье':
-                daysIndent = 6;
-                break;
+    renderStartM(){ //Отображение дней (ячеек) не входящих в выбранный месяц
+        var cal = []
+        for (var i = 0; i < this.nowDate.weekday(); i++) {
+            cal.push(<td></td>)
         }
-        return daysIndent; // Отступ начала надели в календаря
-}
+        return cal
+    }
 
-    generateDate(pass = 0, notes = []){ // генерируем данные месяца для календаря
-        // (функция получет число отступа начала заполения таблицы и данные о событиях)
-        var arrayCalendar = [] // массив с для данных каледаря на месяц
-        var k = 1 // день месяца
-        for (var i = 0; i<= this.nowDate.daysInMonth()+10; i++){
-            if (i<pass){
-                arrayCalendar.push({id: i, text: '  '}) // дни вне актуального месяца
-            }
-            else if(i>=this.nowDate.daysInMonth()+pass){
-                arrayCalendar.push({id: i, text: ''})
+    renderDay() { //Отображение дня
+        for (var i = 0; i < this.state.events.length; i++) {//цикл по добавленным ивентам
+            if (this.nowDate.format("DD.MM.YYYY") == moment().format("DD.MM.YYYY")) { // если день сегодняшний
+                if(this.nowDate.format("DD.MM.YYYY")==this.state.events[i].date){ // если день содержит ивент
+                    var cweek = <td><div className="dayT">
+                            <div className="point-day">&middot;</div>
+                            <div>{this.nowDate.format("DD")}</div>
+                            <div className="event-day">&mdash;</div>
+                    </div></td>
+                    return cweek
+                }
+                 else{
+                    var cweek = <td><div className="dayT">
+                            <div className="point-day">&middot;</div>
+                            <div>{this.nowDate.format("DD")}</div>
+                            <div className="event-day">&nbsp;</div>
+                    </div></td>
+                }
             }
             else {
-                if(k<10) {
-                    var gdate = '0' + k + '.' + this.nowDate.format('MM.YYYY') // день итерации
+                if(this.nowDate.format("DD.MM.YYYY")==this.state.events[i].date){ // если день содержит ивент
+                    var cweek = <td><div className="dayT">
+                            <div className="point-day">&nbsp;</div>
+                            <div>{this.nowDate.format("DD")}</div>
+                            <div className="event-day">&mdash;</div>
+                    </div></td>
+                    return cweek
                 }
                 else{
-                    var gdate = k + '.' + this.nowDate.format('MM.YYYY') // день итерации
-                }
-                for (var j = 0; j < notes.length; j++) {
-                    if (gdate !== notes[j].date) { // если совпадений нету
-                        if(j===notes.length-1) { // если номер итерации равен концу размера массива
-                            arrayCalendar.push({id: i, text: k, event: ''})
-                        }
-                    }
-                    else {
-                        arrayCalendar.push({id: i, text: k, event: 'yes'})
-                        break
-                    }
-                }
-                k++ // день месяца
-            }
-        }
-        return arrayCalendar
-        }
-
-
-
-    renderDay = day => { // отображение дня месяца
-        var day2 = day['text'] // число дня месяца
-        if(day2==moment().format("DD")&& this.nowDate.format('MM.YYYY')== moment().format('MM.YYYY')){ // если да - выделяем сегодняший день точкой
-            if(day['event']==='yes'){ // если да - выделяем выделяем день с событием цветом
-                return <td className='td-3'><div className='point-day'>&deg;</div>{day2}</td>
-            }
-            else {
-                return <td className='td-2'><div className='point-day'>&deg;</div>{day2}</td>
-            }
-        }
-        else{
-            if(day['event']==='yes') { // если да - выделяем выделяем день с событием цветом
-                return <td className='td-4'>{day2}</td>
-            }
-            else{
-                if(day2!='') {
-                    return <td className='td-1'>{day2}</td>
+                    var cweek = <td><div className="dayT">
+                            <div className="point-day">&nbsp;</div>
+                            <div>{this.nowDate.format("DD")}</div>
+                            <div className="event-day">&nbsp;</div>
+                    </div></td>
                 }
             }
         }
-}
-
-    renderWeek = (path) => {
-        var myWeek = this.state.aday.filter(function(elem){
-            return elem['id'] < path && elem['id'] >= path-7; }) // берем дни понедельно
-        var resultWeek = myWeek.map(day =>
-            this.renderDay(day)) //отправляем день недели для рендеринга
-        return resultWeek // возвращаем дни недели
-        }
+        return cweek
+    }
 
     renderMonth = () => {
-        var week = undefined // данные недели
-        var arrayWeek = [] // массив для хранения недель
-            if(this.allMonth===true) { // если включено отображения календаря в виде месяца
-                for (var i = 7; i < 43; i = i + 7) { // цикл для прохода по всем неделям месяца
-                    week = this.renderWeek(i)
-                    arrayWeek.push(<tr>{week}</tr>)
+       var  resultCalendar = [] // месяц
+        var cweek = [] //неделя месяца
+        var month = this.nowDate.format('MM')
+        if(this.allMonth==true) { // если отображение месяца
+            this.nowDate.startOf("month") // начало месяца
+            cweek.push(this.renderStartM()) //отображение ячеек не входящий в месяц
+            while (this.nowDate.format('MM') == month) {
+                if (Number(this.nowDate.weekday()) == 6) { // вс - перевод строки
+                    cweek.push(this.renderDay())
+                     resultCalendar.push(<tr>{cweek}</tr>)
+                    cweek = [] // очищаем массив
                 }
+                else {
+                    cweek.push(this.renderDay())
+                }
+                this.nowDate.add(1, 'days');// плюс день (след день рендерига)
             }
-            else{
-                if(this.nowDate.format("DD")<7){
-                    week = this.renderWeek(7)
-                    arrayWeek.push(<tr>{week}</tr>)
+             resultCalendar.push(<tr>{cweek}</tr>) //добавление недели
+            this.nowDate.subtract(1, 'days') //возвращение на начало выбранного месяца
+            this.nowDate.startOf("month") //возвращение на начало выбранного месяца
+        }
+        else{ // если выбрана неделя для отображения
+            this.nowDate.startOf("week") // перевод на начало недели
+            var week = this.nowDate.format('WW')
+            cweek.push(this.renderStartM()) //отображение ячеек не входящий в месяц
+            while (this.nowDate.format('WW') == week) {
+                if (Number(this.nowDate.weekday()) == 6) { // вс, последний день - перевод строки
+                    cweek.push(this.renderDay()) // добавление дней недели
+                     resultCalendar.push(<tr>{cweek}</tr>) //добавление недели
+                    cweek = [] // очищаем массив
                 }
-                else if(this.nowDate.format("DD")<14){
-                    week = this.renderWeek(14)
-                    arrayWeek.push(<tr>{week}</tr>)
+                else {
+                    cweek.push(this.renderDay()) // добавление дней недели
                 }
-                else if(this.nowDate.format("DD")<21){
-                    week = this.renderWeek(21)
-                    arrayWeek.push(<tr>{week}</tr>)
-                }
-                else if(this.nowDate.format("DD")<28){
-                    week = this.renderWeek(28)
-                    arrayWeek.push(<tr>{week}</tr>)
-                }
-                else if(this.nowDate.format("DD")<35){
-                    var week = this.renderWeek(35)
-                    arrayWeek.push(<tr>{week}</tr>)
-                }
-                else if(this.nowDate.format("DD")<43){
-                    week = this.renderWeek(43)
-                    arrayWeek.push(<tr>{week}</tr>)
-                }
+                this.nowDate.add(1, 'days'); // плюс один день
             }
-        return arrayWeek // возвращение массива с неделями месяца
+             resultCalendar.push(<tr>{cweek}</tr>) // добавление недели
+        }
+        return  resultCalendar
+        }
+
+
+    renderEvent(){ // отображение таблицы с ивентами
+        var eventCalendar = [] // массив для хранение данных таблицы
+        for(var i = 0; i<this.state.events.length; i++){// по количеству дней с ивентами
+            eventCalendar.push(<tr className="tr-1"><td>{this.state.events[i].date}</td><td>&nbsp;</td></tr>) // дата дня с ивентом
+            for(var j = 0; j<this.state.events[i].events.length; j++){ // по кличеству ивентов в дне
+                eventCalendar.push(this.renderEventDay(this.state.events[i].events[j])) // отображение названия и времени ивента
+                eventCalendar.push(this.renderEventDay2(this.state.events[i].events[j])) // отображение описания ивента
+            }
+            eventCalendar.push(<tr className="tr-4"><td>&nbsp;</td><td>&nbsp;</td></tr>) //пропуск сроки
+    }
+    return eventCalendar
+    }
+
+    renderEventDay(event){ // отображение названия и времени ивента
+        var result =
+            <tr className="tr-2">
+                <td>{event.name}</td>
+                <td>{event.time}</td>
+            </tr>
+        return result
 }
 
+    renderEventDay2(event){ // отображение описания ивента
+        var result =
+            <tr className="tr-3">
+                <td>{event.body}</td>
+                <td></td>
+            </tr>
+        return result
+    }
+
     render () {
-        this.state.aday = this.generateDate(this.dataCalendar(), this.props.data)
+        this.cloneDate()
         var headCalendar = <tr>
             <th>пн</th>
             <th>вт</th>
@@ -222,47 +223,57 @@ class CCalendar extends Component {
             <th>вс</th>
         </tr>
 
-    var monthCalendar = <table className="tableCalendar">
-        <tbody>
-        {headCalendar}
+        var nextCalendar = <table className="tableNextCalendar">
+                <tr>
+                    <td className="td-left"><button className="button-1" onClick={this.previousMonth}>
+                        <div>
+                            { !this.allMonth && <div> prev </div> }
+                            { this.allMonth && moment().month(Number(this.nowDate.format("MM"))-2).format("MMMM") }
+                        </div>
+                    </button></td>
+                    <td className="td-top"><div id="layer2" ><button className="button-2" onClick={this.nowMonth}>
+                        <div className="rangeDate">
+                            { !this.allMonth && this.cloneD.format("MMMM") + " " + this.cloneD.startOf('week').format("DD") +"-"+ this.cloneD.endOf('week').format("DD") }
+                            { this.allMonth && this.cloneD.format("MMMM") }
+                        </div>
+                        </button>
+                        <a  className="title" onClick={this.activeMenu}></a>
+                            <table>
+                                <tr align="center">
+                                    <td><button className="button-3" onClick={this.twCalendar}>
+                                        Неделя
+                                    </button></td>
+                                    <td><button className="button-3" onClick={this.tmCalendar}>
+                                        Месяц
+                                    </button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                    <td className="td-right"><button className="button-1" onClick={this.nextMonth}>
+                        <div>
+                            { !this.allMonth && <div> next </div> }
+                            { this.allMonth && moment().month(Number(this.nowDate.format("MM"))).format("MMMM") }
+                        </div>
+                    </button></td>
+                </tr>
+            </table>
 
-            {this.renderMonth()}
+    var monthCalendar =   <table className="tableCalendar"><tbody>
+        {headCalendar}
+        {this.renderMonth()}
+        <h3></h3>
         </tbody>
         </table>
-        var controlCalendar = <table className="tableControlCalendar">
-            <tbody>
-            <tr>
-                <td className="td-control"><button className="button-1"  onClick={this.previousMonth}>
-                    Previes
-                </button></td>
-                <td className="td-control"><button className="button-1" onClick={this.nowMonth}>
-                    Now
-                </button></td>
-                <td className="td-control"><button className="button-1" onClick={this.nextMonth}>
-                    Next
-                </button></td>
-                <td className="td-control"><button className="button-1" onClick={this.sizeCalendar}>
-                    Type calendar
-                </button></td>
-            </tr>
-            </tbody>
-        </table>
-
-
-
+        var tableEvent =  <table className="tableEvent">{this.renderEvent()}</table>
         return (
-            <div>
-                <h3>Table calendar:</h3>
+            <div id="layer1">
+                {nextCalendar}
                 {monthCalendar}
-                {controlCalendar}
-                <p>День: {this.state.day}</p>
-                <p>Месяц: {this.state.month}</p>
-                <p>Год: {this.state.year}</p>
-                <p>Количество дней в месяце: {this.state.nday}</p>
+                {tableEvent}
             </div>
         )
     }
 }
-
 export default CCalendar;
 

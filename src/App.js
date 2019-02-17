@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './components/style/App.css';
-import Footer from './components/Footer'
-import MainContent from './components/MainContent'
 import CCalendar from './components/CCalendar'
 import './components/style/CCalendar.css'
 
@@ -10,8 +8,8 @@ class App extends Component {
     constructor() {
         super();
         this.dataCalendar = [
-            {date: "20.02.2019", events:[{name:"Football", body:"Game Germany - Italy", time: "20:00"}]},
-            {date: "19.02.2019", events:[{name:"Cinema", body:"Bad boys", time: "19:00"}]},
+            {date: "20.02.2019", events:[{name:"Football", body:"Game Germany - Italy", time: "20:00"}, {name:"Football", body:"Game R - G", time: "20:00"}]},
+            {date: "15.02.2019", events:[{name:"Cinema", body:"Bad boys", time: "19:00"}]},
             {date: "15.03.2019", events:[{name:"Cinema", body:"Aladdin disney", time: "19:00"}]},
             {date: "07.02.2019", events:[{name:"Cinema", body:"Interstellar", time: "19:00"}]}
         ]
@@ -24,7 +22,7 @@ class App extends Component {
         this.fCalendar()
     }
 
-    fCalendar(){
+    fCalendar(){ // отображение календаря
         this.myCalendar =  < CCalendar data={this.dataCalendar} />
     }
 
@@ -60,11 +58,8 @@ class App extends Component {
 
     }
 
-    render () {
-        return (
-    <div>
-        <h3>Event:</h3>
-        <form onSubmit={this.handleSubmit}>
+    formRender(){
+        var formR = <form onSubmit={this.handleSubmit}>
             <label>
                 Date: <input type="text" value={this.state.value} placeholder="DD.MM.YYYY" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" onChange={this.handleChange}  />
                 Name: <input type="text" value={this.state.name}  placeholder="Name event"  onChange={this.handleNameChange}  />
@@ -73,9 +68,14 @@ class App extends Component {
             </label>
             <input type="submit" className="button-1" value="Submit" />
         </form>
+        return formR
+    }
+
+    render () {
+        return (
+    <div>
         {this.myCalendar}
-    < MainContent/>
-                <Footer />
+
     </div>
         )
     }
