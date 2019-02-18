@@ -9,9 +9,12 @@ class App extends Component {
         super();
         this.dataCalendar = [
             {date: "20.02.2019", events:[{name:"Football", body:"Game Germany - Italy", time: "20:00"}, {name:"Football", body:"Game R - G", time: "20:00"}]},
+            {date: "21.02.2019", events:[{name:"Football", body:"Game Italy - Germany", time: "20:00"}, {name:"Football", body:"Game G - R", time: "21:00"}]},
             {date: "15.02.2019", events:[{name:"Cinema", body:"Bad boys", time: "19:00"}]},
-            {date: "15.03.2019", events:[{name:"Cinema", body:"Aladdin disney", time: "19:00"}]},
-            {date: "07.02.2019", events:[{name:"Cinema", body:"Interstellar", time: "19:00"}]}
+            {date: "18.02.2019", events:[{name:"Cinema", body:"Aladdin disney", time: "19:00"}]},
+            {date: "07.02.2019", events:[{name:"Cinema", body:"Interstellar", time: "19:00"}]},
+            {date: "18.03.2019", events:[{name:"Cinema", body:"Aladdin disney", time: "19:00"}]},
+            {date: "07.03.2019", events:[{name:"Cinema", body:"Interstellar", time: "19:00"}]},
         ]
         this.state = {value: "", name:"", body:"", time:"" };
         this.handleChange = this.handleChange.bind(this);
@@ -73,6 +76,7 @@ class App extends Component {
 
     render () {
         return (
+
     <div>
         {this.myCalendar}
 

@@ -17,17 +17,19 @@ class CCalendar extends Component {
             week: "",
             nday: "",
             aday: [], // массив для хранения дней месяца
-            events: this.props.data
+            events: this.props.data.sort((a,b) => moment(a.date, "DD.MM.YYYY") - moment(b.date, "DD.MM.YYYY")),
+            selectevents: "",
         }
-        this.pppas = 0
         this.nextMonth = this.nextMonth.bind(this);
         this.previousMonth = this.previousMonth.bind(this);
         this.nowMonth = this.nowMonth.bind(this)
         this.tmCalendar = this.tmCalendar.bind(this)
         this.twCalendar = this.twCalendar.bind(this)
+        this.getId=this.getId.bind(this)
         this.nowMonth() // определение сегодняшней даты
         this.cloneDate()
     }
+
 
     activeMenu(){ // выдвигающееся меню
         var menuElem = document.getElementById('layer2');
@@ -57,7 +59,6 @@ class CCalendar extends Component {
         this.nowDay()
         this.activeMenu()
     }
-
 
     twCalendar(){ // Тип календаря неделя
         this.allMonth=false // на неделю
@@ -92,16 +93,33 @@ class CCalendar extends Component {
     renderStartM(){ //Отображение дней (ячеек) не входящих в выбранный месяц
         var cal = []
         for (var i = 0; i < this.nowDate.weekday(); i++) {
-            cal.push(<td></td>)
+            cal.push(<td onClick={this.getId}></td>)
         }
         return cal
+    }
+
+    getId(element) {
+         this.setState({selectevents:this.datePars(element.currentTarget.innerText)+"."+this.nowDate.format("MM")+"."+this.nowDate.format("YYYY")})
+    }
+
+    datePars(str){
+        var date = ""
+        for(var i = 0; i<str.length; i++){
+            if(Number(str.charAt(i))||str.charAt(i)=="0"){
+                    date = date.concat(str.charAt(i))
+            }
+        }
+        if (Number(date)<10){
+            date = "0"+date
+        }
+        return date
     }
 
     renderDay() { //Отображение дня
         for (var i = 0; i < this.state.events.length; i++) {//цикл по добавленным ивентам
             if (this.nowDate.format("DD.MM.YYYY") == moment().format("DD.MM.YYYY")) { // если день сегодняшний
                 if(this.nowDate.format("DD.MM.YYYY")==this.state.events[i].date){ // если день содержит ивент
-                    var cweek = <td><div className="dayT">
+                    var cweek = <td onClick={this.getId}><div className="dayT">
                             <div className="point-day">&middot;</div>
                             <div>{this.nowDate.format("DD")}</div>
                             <div className="event-day">&mdash;</div>
@@ -118,7 +136,7 @@ class CCalendar extends Component {
             }
             else {
                 if(this.nowDate.format("DD.MM.YYYY")==this.state.events[i].date){ // если день содержит ивент
-                    var cweek = <td><div className="dayT">
+                    var cweek = <td onClick={this.getId}><div className="dayT">
                             <div className="point-day">&nbsp;</div>
                             <div>{this.nowDate.format("DD")}</div>
                             <div className="event-day">&mdash;</div>
@@ -179,18 +197,49 @@ class CCalendar extends Component {
         return  resultCalendar
         }
 
-
     renderEvent(){ // отображение таблицы с ивентами
         var eventCalendar = [] // массив для хранение данных таблицы
-        for(var i = 0; i<this.state.events.length; i++){// по количеству дней с ивентами
-            eventCalendar.push(<tr className="tr-1"><td>{this.state.events[i].date}</td><td>&nbsp;</td></tr>) // дата дня с ивентом
-            for(var j = 0; j<this.state.events[i].events.length; j++){ // по кличеству ивентов в дне
-                eventCalendar.push(this.renderEventDay(this.state.events[i].events[j])) // отображение названия и времени ивента
-                eventCalendar.push(this.renderEventDay2(this.state.events[i].events[j])) // отображение описания ивента
+        var eventCalendar2 = [] // массив для хранение данных таблицы
+        for(var i = 0; i<this.state.events.length; i++) {// по количеству дней с ивентами
+            if (moment(this.state.events[i].date, "DD.MM.YYYY").format("MM.YYYY") == this.nowDate.format("MM.YYYY")) {
+                if (this.state.events[i].date == this.state.selectevents) {
+                    eventCalendar2.push(<tr className="tr-1">
+                        <td>{this.state.events[i].date}</td>
+                        <td>&nbsp;</td>
+                    </tr>) // дата дня с ивентом
+                }
+                else {
+                    eventCalendar.push(<tr className="tr-1">
+                        <td>{this.state.events[i].date}</td>
+                        <td>&nbsp;</td>
+                    </tr>) // дата дня с ивентом
+                }
+                for (var j = 0; j < this.state.events[i].events.length; j++) { // по кличеству ивентов в дне
+                    if (this.state.events[i].date == this.state.selectevents) {
+                        eventCalendar2.push(this.renderEventDay(this.state.events[i].events[j])) // отображение названия и времени ивента
+                        eventCalendar2.push(this.renderEventDay2(this.state.events[i].events[j])) // отображение описания ивента
+                    }
+                    else {
+                        eventCalendar.push(this.renderEventDay(this.state.events[i].events[j])) // отображение названия и времени ивента
+                        eventCalendar.push(this.renderEventDay2(this.state.events[i].events[j])) // отображение описания ивента
+                    }
+                }
+                if (this.state.events[i].date == this.state.selectevents) {
+                    eventCalendar2.push(<tr className="tr-4">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>) //пропуск сроки
+                }
+                else {
+                    eventCalendar.push(<tr className="tr-4">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>) //пропуск сроки
+                }
             }
-            eventCalendar.push(<tr className="tr-4"><td>&nbsp;</td><td>&nbsp;</td></tr>) //пропуск сроки
-    }
-    return eventCalendar
+        }
+        eventCalendar2.push(eventCalendar)
+    return eventCalendar2
     }
 
     renderEventDay(event){ // отображение названия и времени ивента
@@ -213,6 +262,7 @@ class CCalendar extends Component {
 
     render () {
         this.cloneDate()
+
         var headCalendar = <tr>
             <th>пн</th>
             <th>вт</th>

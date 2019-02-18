@@ -81,6 +81,7 @@ a{
     padding-right: 10px;
 }
 
+
 .tr-1{
     padding: 100px;
     background-color: white;
@@ -167,6 +168,12 @@ a{
 .tableCalendar td:nth-of-type(7) {
     color: red;
 }
+
+.tableCalendar td:hover{
+    background-color: #0B3157;
+    color: white;
+}
+
 
 .tableControlCalendar{
     table-layout: fixed;
