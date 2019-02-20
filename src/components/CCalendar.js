@@ -27,17 +27,15 @@ class CCalendar extends Component {
         this.twCalendar = this.twCalendar.bind(this)
         this.getId=this.getId.bind(this)
         this.nowMonth() // определение сегодняшней даты
-        this.cloneDate()
     }
-
 
     activeMenu(){ // выдвигающееся меню
         var menuElem = document.getElementById('layer2');
         menuElem.classList.toggle('open');
     }
 
-    cloneDate(){ // копируем дату
-        this.cloneD = this.nowDate.clone()
+    cloneDate(){
+        this.pointDate = this.nowDate.clone()
     }
 
     nowDay(){ // обновляем отображение даты
@@ -45,17 +43,20 @@ class CCalendar extends Component {
         this.setState({month: this.nowDate.format('MMMM')})
         this.setState({year: this.nowDate.format('YYYY')})
         this.setState({nday: this.nowDate.daysInMonth()})
-
 }
 
     nowMonth(){ // сегодняшня дата
         moment().locale("ru", localization).format('LLL') // установка русского формата календаря
         this.nowDate = moment()
+        if(this.allMonth==true) {
+            this.nowDate.startOf("month")
+        }
         this.nowDay()
     }
 
     tmCalendar(){ // Тип календаря месяц
             this.allMonth=true // на месяц
+            this.nowDate.startOf("month")
         this.nowDay()
         this.activeMenu()
     }
@@ -64,6 +65,11 @@ class CCalendar extends Component {
         this.allMonth=false // на неделю
         if (this.nowDate.format("MM")==moment().format("MM")&&this.nowDate.format("YYYY")==moment().format("YYYY")){
             this.nowDate = moment()
+        }
+       this.cloneDate()
+      this.pointDate.startOf("week")
+       if(this.pointDate.format('MM.YYYY')==this.nowDate.format("MM.YYYY")){
+           this.nowDate.startOf("week")
         }
         this.nowDay()
         this.activeMenu()
@@ -75,24 +81,28 @@ class CCalendar extends Component {
             this.nowDate.month((this.nowDate.format('M'))) // +1 месяц
         }
         else{
-            this.nowDate.add(0, 'days');
+            this.nowDate.startOf("week")
+            this.nowDate.add(1, 'week');
         }
         this.nowDay()
         }
 
     previousMonth(){ //показать предедущий месяц/неделю
         if(this.allMonth===true) {
+            this.nowDate.startOf("month")
             this.nowDate.month((this.nowDate.format('M'))-2) // -1 месяц
+
         }
         else{
-            this.nowDate.subtract(8, 'days')
+            this.nowDate.startOf("week")
+            this.nowDate.subtract(1, 'week')
         }
         this.nowDay()
     }
 
     renderStartM(){ //Отображение дней (ячеек) не входящих в выбранный месяц
         var cal = []
-        for (var i = 0; i < this.nowDate.weekday(); i++) {
+        for (var i = 0; i < this.pointDate.weekday(); i++) {
             cal.push(<td onClick={this.getId}></td>)
         }
         return cal
@@ -117,11 +127,11 @@ class CCalendar extends Component {
 
     renderDay() { //Отображение дня
         for (var i = 0; i < this.state.events.length; i++) {//цикл по добавленным ивентам
-            if (this.nowDate.format("DD.MM.YYYY") == moment().format("DD.MM.YYYY")) { // если день сегодняшний
-                if(this.nowDate.format("DD.MM.YYYY")==this.state.events[i].date){ // если день содержит ивент
+            if (this.pointDate.format("DD.MM.YYYY") == moment().format("DD.MM.YYYY")) { // если день сегодняшний
+                if(this.pointDate.format("DD.MM.YYYY")==this.state.events[i].date){ // если день содержит ивент
                     var cweek = <td onClick={this.getId}><div className="dayT">
                             <div className="point-day">&middot;</div>
-                            <div>{this.nowDate.format("DD")}</div>
+                            <div>{this.pointDate.format("DD")}</div>
                             <div className="event-day">&mdash;</div>
                     </div></td>
                     return cweek
@@ -129,16 +139,16 @@ class CCalendar extends Component {
                  else{
                     var cweek = <td><div className="dayT">
                             <div className="point-day">&middot;</div>
-                            <div>{this.nowDate.format("DD")}</div>
+                            <div>{this.pointDate.format("DD")}</div>
                             <div className="event-day">&nbsp;</div>
                     </div></td>
                 }
             }
             else {
-                if(this.nowDate.format("DD.MM.YYYY")==this.state.events[i].date){ // если день содержит ивент
+                if(this.pointDate.format("DD.MM.YYYY")==this.state.events[i].date){ // если день содержит ивент
                     var cweek = <td onClick={this.getId}><div className="dayT">
                             <div className="point-day">&nbsp;</div>
-                            <div>{this.nowDate.format("DD")}</div>
+                            <div>{this.pointDate.format("DD")}</div>
                             <div className="event-day">&mdash;</div>
                     </div></td>
                     return cweek
@@ -146,7 +156,7 @@ class CCalendar extends Component {
                 else{
                     var cweek = <td><div className="dayT">
                             <div className="point-day">&nbsp;</div>
-                            <div>{this.nowDate.format("DD")}</div>
+                            <div>{this.pointDate.format("DD")}</div>
                             <div className="event-day">&nbsp;</div>
                     </div></td>
                 }
@@ -160,10 +170,10 @@ class CCalendar extends Component {
         var cweek = [] //неделя месяца
         var month = this.nowDate.format('MM')
         if(this.allMonth==true) { // если отображение месяца
-            this.nowDate.startOf("month") // начало месяца
+          //  this.nowDate.startOf("month") // начало месяца
             cweek.push(this.renderStartM()) //отображение ячеек не входящий в месяц
-            while (this.nowDate.format('MM') == month) {
-                if (Number(this.nowDate.weekday()) == 6) { // вс - перевод строки
+            while (this.pointDate.format('MM') == month) {
+                if (Number(this.pointDate.weekday()) == 6) { // вс - перевод строки
                     cweek.push(this.renderDay())
                      resultCalendar.push(<tr>{cweek}</tr>)
                     cweek = [] // очищаем массив
@@ -171,26 +181,26 @@ class CCalendar extends Component {
                 else {
                     cweek.push(this.renderDay())
                 }
-                this.nowDate.add(1, 'days');// плюс день (след день рендерига)
+                this.pointDate.add(1, 'days');// плюс день (след день рендерига)
             }
              resultCalendar.push(<tr>{cweek}</tr>) //добавление недели
-            this.nowDate.subtract(1, 'days') //возвращение на начало выбранного месяца
-            this.nowDate.startOf("month") //возвращение на начало выбранного месяца
         }
+
         else{ // если выбрана неделя для отображения
-            this.nowDate.startOf("week") // перевод на начало недели
-            var week = this.nowDate.format('WW')
+            this.pointDate.startOf("week") // перевод на начало недели
+            var week = this.pointDate.format('WW')
             cweek.push(this.renderStartM()) //отображение ячеек не входящий в месяц
-            while (this.nowDate.format('WW') == week) {
-                if (Number(this.nowDate.weekday()) == 6) { // вс, последний день - перевод строки
+            while (this.pointDate.format('WW') == week) {
+                if (Number(this.pointDate.weekday()) == 6) { // вс, последний день - перевод строки
                     cweek.push(this.renderDay()) // добавление дней недели
                      resultCalendar.push(<tr>{cweek}</tr>) //добавление недели
                     cweek = [] // очищаем массив
                 }
                 else {
                     cweek.push(this.renderDay()) // добавление дней недели
+
                 }
-                this.nowDate.add(1, 'days'); // плюс один день
+                this.pointDate.add(1, 'days');// плюс день (след день рендерига)
             }
              resultCalendar.push(<tr>{cweek}</tr>) // добавление недели
         }
@@ -200,13 +210,24 @@ class CCalendar extends Component {
     renderEvent(){ // отображение таблицы с ивентами
         var eventCalendar = [] // массив для хранение данных таблицы
         var eventCalendar2 = [] // массив для хранение данных таблицы
+        var size = ""
+        var date = this.nowDate.clone()
+
+        if(this.allMonth==true){
+            size = "MM.YYYY"
+        }
+        else{
+            size = "WW.YYYY"
+        }
         for(var i = 0; i<this.state.events.length; i++) {// по количеству дней с ивентами
-            if (moment(this.state.events[i].date, "DD.MM.YYYY").format("MM.YYYY") == this.nowDate.format("MM.YYYY")) {
+
+            if (moment(this.state.events[i].date, "DD.MM.YYYY").format(size) == date.format(size)) {
                 if (this.state.events[i].date == this.state.selectevents) {
                     eventCalendar2.push(<tr className="tr-1">
                         <td>{this.state.events[i].date}</td>
                         <td>&nbsp;</td>
                     </tr>) // дата дня с ивентом
+
                 }
                 else {
                     eventCalendar.push(<tr className="tr-1">
@@ -238,6 +259,7 @@ class CCalendar extends Component {
                 }
             }
         }
+        this.state.selectevents=""
         eventCalendar2.push(eventCalendar)
     return eventCalendar2
     }
@@ -262,7 +284,6 @@ class CCalendar extends Component {
 
     render () {
         this.cloneDate()
-
         var headCalendar = <tr>
             <th>пн</th>
             <th>вт</th>
@@ -283,8 +304,8 @@ class CCalendar extends Component {
                     </button></td>
                     <td className="td-top"><div id="layer2" ><button className="button-2" onClick={this.nowMonth}>
                         <div className="rangeDate">
-                            { !this.allMonth && this.cloneD.format("MMMM") + " " + this.cloneD.startOf('week').format("DD") +"-"+ this.cloneD.endOf('week').format("DD") }
-                            { this.allMonth && this.cloneD.format("MMMM") }
+                            { !this.allMonth && this.pointDate.format("MMMM") + " " + this.pointDate.startOf('week').format("DD") +"-"+ this.pointDate.endOf('week').format("DD") }
+                            { this.allMonth && this.pointDate.format("MMMM") }
                         </div>
                         </button>
                         <a  className="title" onClick={this.activeMenu}></a>
