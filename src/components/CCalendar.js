@@ -35,7 +35,7 @@ class CCalendar extends Component {
         menuElem.classList.toggle('open');
     }
 
-    cloneDate(){
+    cloneDate(){ // копируем актуальную дату
         this.pointDate = this.nowDate.clone()
     }
 
@@ -101,7 +101,7 @@ class CCalendar extends Component {
         this.nowDay()
     }
 
-    renderStartM(){ //Отображение дней (ячеек) не входящих в выбранный месяц
+    renderStartM(){ //отображение дней (ячеек) не входящих в выбранный месяц
         var cal = []
         for (var i = 0; i < this.pointDate.weekday(); i++) {
             cal.push(<td onClick={this.getId}></td>)
@@ -109,11 +109,11 @@ class CCalendar extends Component {
         return cal
     }
 
-    getId(element) {
+    getId(element) { // получить день выбранного ивента
          this.setState({selectevents:this.datePars(element.currentTarget.innerText)+"."+this.nowDate.format("MM")+"."+this.nowDate.format("YYYY")})
     }
 
-    datePars(str){
+    datePars(str){ // парсинг выбранного ивента
         var date = ""
         for(var i = 0; i<str.length; i++){
             if(Number(str.charAt(i))||str.charAt(i)=="0"){
@@ -123,7 +123,7 @@ class CCalendar extends Component {
         return date
     }
 
-    renderDay() { //Отображение дня
+    renderDay() { //отображение дня
         for (var i = 0; i < this.state.events.length; i++) {//цикл по добавленным ивентам
             if (this.pointDate.format("DD.MM.YYYY") == moment().format("DD.MM.YYYY")) { // если день сегодняшний
                 if(this.pointDate.format("DD.MM.YYYY")==this.state.events[i].date){ // если день содержит ивент
@@ -163,7 +163,7 @@ class CCalendar extends Component {
         return cweek
     }
 
-    renderMonth = () => {
+    renderMonth = () => { // отображение месяца / недели
        var  resultCalendar = [] // месяц
         var cweek = [] //неделя месяца
         var month = this.nowDate.format('MM')
@@ -219,8 +219,8 @@ class CCalendar extends Component {
         }
         for(var i = 0; i<this.state.events.length; i++) {// по количеству дней с ивентами
 
-            if (moment(this.state.events[i].date, "DD.MM.YYYY").format(size) == date.format(size)) {
-                if (this.state.events[i].date == this.state.selectevents) {
+            if (moment(this.state.events[i].date, "DD.MM.YYYY").format(size) == date.format(size)) { // ивенты выбранного дипазона времени (месяц или неделя)
+                if (this.state.events[i].date == this.state.selectevents) { // если ивент отмчеченый (selected) на календаря
                     eventCalendar2.push(<tr className="tr-1">
                         <td>{this.state.events[i].date}</td>
                         <td>&nbsp;</td>
@@ -243,7 +243,7 @@ class CCalendar extends Component {
                         eventCalendar.push(this.renderEventDay2(this.state.events[i].events[j])) // отображение описания ивента
                     }
                 }
-                if (this.state.events[i].date == this.state.selectevents) {
+                if (this.state.events[i].date == this.state.selectevents) { // ивенты выбранного дипазона времени (месяц или неделя)
                     eventCalendar2.push(<tr className="tr-4">
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -257,8 +257,8 @@ class CCalendar extends Component {
                 }
             }
         }
-        this.state.selectevents=""
-        eventCalendar2.push(eventCalendar)
+        this.state.selectevents="" // очищаем данные о выбранном ивенте
+        eventCalendar2.push(eventCalendar) // объединяем массив с ивентами, так чтобы отмеченный ивент был сверху
     return eventCalendar2
     }
 
@@ -279,6 +279,24 @@ class CCalendar extends Component {
             </tr>
         return result
     }
+
+    rendernameWeek(){ // Отображение диапазона выбранных дат
+        var secondCloneD = this.pointDate.clone()
+        var secondCloneD2 = this.pointDate.clone()
+        secondCloneD.endOf('week')
+        secondCloneD2.startOf('week')
+        if(secondCloneD.format("MM.YYYY")!=this.pointDate.format("MM.YYYY")||secondCloneD2.format("MM.YYYY")!=this.pointDate.format("MM.YYYY")){
+         if (secondCloneD2.format("MM.YYYY")<this.pointDate.format("MM.YYYY")){ // предыдущий
+                return secondCloneD2.format("MMMM") + " " + secondCloneD2.format("DD") +"-"+  secondCloneD.format("MMMM") + " " + secondCloneD.format("DD")
+            }
+            else { // след месяц
+             return secondCloneD2.format("MMMM") + " " + secondCloneD2.format("DD") + "-" + secondCloneD.format("MMMM") + " " + secondCloneD.format("DD")
+          }}
+         else{ // даты равны
+                return this.pointDate.format("MMMM") + " " + secondCloneD2.format("DD") +"-"+ secondCloneD.format("DD")
+            }
+        }
+
 
     render () {
         this.cloneDate()
@@ -302,7 +320,7 @@ class CCalendar extends Component {
                     </button></td>
                     <td className="td-top"><div id="layer2" ><button className="button-2" onClick={this.nowMonth}>
                         <div className="rangeDate">
-                            { !this.allMonth && this.pointDate.format("MMMM") + " " + this.pointDate.startOf('week').format("DD") +"-"+ this.pointDate.endOf('week').format("DD") }
+                            { !this.allMonth && this.rendernameWeek() }
                             { this.allMonth && this.pointDate.format("MMMM") }
                         </div>
                         </button>

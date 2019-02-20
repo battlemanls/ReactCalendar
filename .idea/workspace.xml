@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1759bfb9-cd89-4c4d-8958-9639019e3015" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CCalendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CCalendar.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -59,8 +58,8 @@
       <file leaf-file-name="CCalendar.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/CCalendar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="112" column="53" lean-forward="true" selection-start-line="112" selection-start-column="53" selection-end-line="112" selection-end-column="53" />
+            <state relative-caret-position="272">
+              <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -319,7 +318,7 @@
       <workItem from="1550406998625" duration="8948000" />
       <workItem from="1550421013384" duration="19625000" />
       <workItem from="1550504452154" duration="34904000" />
-      <workItem from="1550658137591" duration="1039000" />
+      <workItem from="1550658137591" duration="6443000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2.0">
       <created>1550424471606</created>
@@ -349,11 +348,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550623094917</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Version 2.3.1 - fix bugs">
+      <created>1550659225147</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1550659225147</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313095000" />
+    <option name="totallyTimeSpent" value="318499000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -390,7 +396,9 @@
     <MESSAGE value="Version 2.1" />
     <MESSAGE value="Version 2.2 - add (select day with events)" />
     <MESSAGE value="Version 2.3 - fix bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 2.3 - fix bugs" />
+    <MESSAGE value="Version 2.3.1 - fix bugs" />
+    <MESSAGE value="Version 2.3.2 - fix bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 2.3.2 - fix bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -624,8 +632,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/CCalendar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="112" column="53" lean-forward="true" selection-start-line="112" selection-start-column="53" selection-end-line="112" selection-end-column="53" />
+        <state relative-caret-position="272">
+          <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
