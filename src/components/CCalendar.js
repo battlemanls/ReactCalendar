@@ -27,6 +27,7 @@ class CCalendar extends Component {
         this.twCalendar = this.twCalendar.bind(this)
         this.getId=this.getId.bind(this)
         this.nowMonth() // определение сегодняшней даты
+
     }
 
     activeMenu(){ // выдвигающееся меню
@@ -118,9 +119,6 @@ class CCalendar extends Component {
             if(Number(str.charAt(i))||str.charAt(i)=="0"){
                     date = date.concat(str.charAt(i))
             }
-        }
-        if (Number(date)<10){
-            date = "0"+date
         }
         return date
     }

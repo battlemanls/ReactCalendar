@@ -9,7 +9,9 @@ class App extends Component {
         super();
         this.dataCalendar = [
             {date: "20.02.2019", events:[{name:"Football", body:"Game Germany - Italy", time: "20:00"}, {name:"Football", body:"Game R - G", time: "20:00"}]},
+            {date: "03.02.2019", events:[{name:"Cinema", body:"Interstellar", time: "20:00"}]},
             {date: "07.02.2019", events:[{name:"Cinema", body:"Interstellar", time: "19:00"}]},
+            {date: "10.02.2019", events:[{name:"Cinema", body:"Interstellar", time: "21:00"}]},
             {date: "11.02.2019", events:[{name:"Cinema", body:"Interstellar", time: "20:00"}]},
             {date: "21.02.2019", events:[{name:"Football", body:"Game Italy - Germany", time: "20:00"}, {name:"Football", body:"Game G - R", time: "21:00"}]},
             {date: "15.02.2019", events:[{name:"Cinema", body:"Bad boys", time: "19:00"}]},
