@@ -222,14 +222,14 @@ class CCalendar extends Component {
             if (moment(this.state.events[i].date, "DD.MM.YYYY").format(size) == date.format(size)) { // ивенты выбранного дипазона времени (месяц или неделя)
                 if (this.state.events[i].date == this.state.selectevents) { // если ивент отмчеченый (selected) на календаря
                     eventCalendar2.push(<tr className="tr-1">
-                        <td>{this.state.events[i].date}</td>
+                        <td>{moment(this.state.events[i].date, "DD.MM.YYYY").format("dddd, DD MMMM")}</td>
                         <td>&nbsp;</td>
                     </tr>) // дата дня с ивентом
 
                 }
                 else {
                     eventCalendar.push(<tr className="tr-1">
-                        <td>{this.state.events[i].date}</td>
+                        <td>{moment(this.state.events[i].date, "DD.MM.YYYY").format("dddd, DD MMMM")}</td>
                         <td>&nbsp;</td>
                     </tr>) // дата дня с ивентом
                 }

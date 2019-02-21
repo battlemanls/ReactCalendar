@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1759bfb9-cd89-4c4d-8958-9639019e3015" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CCalendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CCalendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/style/CCalendar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/style/CCalendar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Calendar.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Calendar.jpg" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,11 +25,8 @@
       <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-980">
-              <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="51">
+              <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -49,17 +51,22 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="68">
+              <caret line="4" column="64" selection-start-line="4" selection-start-column="64" selection-end-line="4" selection-end-column="64" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CCalendar.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="favicon.ico" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/favicon.ico">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file leaf-file-name="CCalendar.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/CCalendar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+            <state relative-caret-position="1326">
+              <caret line="231" column="101" selection-start-line="231" selection-start-column="101" selection-end-line="231" selection-end-column="101" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -67,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CCalendar.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CCalendar.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/style/CCalendar.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2941">
-              <caret line="173" column="17" selection-start-line="173" selection-start-column="17" selection-end-line="173" selection-end-column="17" />
+            <state relative-caret-position="207">
+              <caret line="285" column="1" lean-forward="true" selection-start-line="285" selection-start-column="1" selection-end-line="285" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -79,8 +86,8 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="12" lean-forward="true" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+            <state relative-caret-position="68">
+              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -111,10 +118,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cal</find>
-      <find>renderWeek</find>
-      <find>Calendar</find>
-      <find>tr-1</find>
       <find>tr-2</find>
       <find>tr-3</find>
       <find>tr-5</find>
@@ -126,7 +129,6 @@
       <find>td-top</find>
       <find>tableDay</find>
       <find>point-day</find>
-      <find>dayT</find>
       <find>button-1</find>
       <find>button-2</find>
       <find>tableNextCalendar</find>
@@ -140,7 +142,12 @@
       <find>cloneDate</find>
       <find>cloneD</find>
       <find>cloneDdd</find>
+      <find>pt</find>
+      <find>40</find>
+      <find>dayT</find>
+      <find>375</find>
       <find>console</find>
+      <find>text-transform</find>
     </findStrings>
     <replaceStrings>
       <replace>daysIndent</replace>
@@ -155,6 +162,7 @@
       <replace>renderDay</replace>
       <replace>renderMonth</replace>
       <replace>cloneDate</replace>
+      <replace>px</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -171,11 +179,11 @@
         <option value="$PROJECT_DIR$/src/components/MainContent.js" />
         <option value="$PROJECT_DIR$/src/components/Footer.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/src/components/style/CCalendar.css" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/components/CCalendar.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/components/style/CCalendar.css" />
       </list>
     </option>
   </component>
@@ -256,12 +264,12 @@
     <property name="prettierjs.PrettierConfiguration.Package" value="D:\MyProjects\JSPProjects\react-app\node_modules\prettier" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\MyProjects\JSPProjects\react-app\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\MyProjects\JSPProjects\react-app\src\components\style" />
       <recent name="D:\MyProjects\JSPProjects\react-app\src\components" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\MyProjects\JSPProjects\react-app\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -318,7 +326,7 @@
       <workItem from="1550406998625" duration="8948000" />
       <workItem from="1550421013384" duration="19625000" />
       <workItem from="1550504452154" duration="34904000" />
-      <workItem from="1550658137591" duration="6443000" />
+      <workItem from="1550658137591" duration="27517000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2.0">
       <created>1550424471606</created>
@@ -355,11 +363,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550659225147</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Version 2.3.3 - fix bugs">
+      <created>1550665450739</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1550665450739</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="318499000" />
+    <option name="totallyTimeSpent" value="339573000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -398,7 +413,8 @@
     <MESSAGE value="Version 2.3 - fix bugs" />
     <MESSAGE value="Version 2.3.1 - fix bugs" />
     <MESSAGE value="Version 2.3.2 - fix bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 2.3.2 - fix bugs" />
+    <MESSAGE value="Version 2.3.3 - fix bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 2.3.3 - fix bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -468,9 +484,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="34" column="15" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -518,9 +531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="34" column="15" lean-forward="true" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -545,9 +555,6 @@
     <entry file="file://$PROJECT_DIR$/src/components/ButtonTest.js" />
     <entry file="file://$PROJECT_DIR$/src/components/CreateUl.js" />
     <entry file="file://$PROJECT_DIR$/src/components/style/ButtonTest.css" />
-    <entry file="file://$PROJECT_DIR$/public/favicon.ico">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/logo.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -573,9 +580,6 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/manifest.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Footer.js" />
     <entry file="file://$PROJECT_DIR$/src/components/CCalendar.js___jb_tmp___" />
     <entry file="file://$PROJECT_DIR$/src/components/MainContent.js" />
@@ -596,47 +600,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/style/CCalendar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2941">
-          <caret line="173" column="17" selection-start-line="173" selection-start-column="17" selection-end-line="173" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" lean-forward="true" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/public/favicon.ico">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-980">
-          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="64" selection-start-line="4" selection-start-column="64" selection-end-line="4" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/manifest.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/CCalendar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+        <state relative-caret-position="1326">
+          <caret line="231" column="101" selection-start-line="231" selection-start-column="101" selection-end-line="231" selection-end-column="101" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/style/CCalendar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="285" column="1" lean-forward="true" selection-start-line="285" selection-start-column="1" selection-end-line="285" selection-end-column="1" />
         </state>
       </provider>
     </entry>

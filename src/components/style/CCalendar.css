@@ -1,5 +1,6 @@
 #layer1 {
     position:relative;
+    min-width: 375px;
 }
 
 a{
@@ -63,15 +64,21 @@ a{
 }
 
 .tableEvent{
-    height: 100%;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding-right: 25px;
+    padding-left: 12px;
+    border-color: white;
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
+
+
 }
 
 .tableEvent td:nth-of-type(1){
     text-align: left;
     width: 100%;
     padding-left: 10px;
+
 
 }
 
@@ -83,38 +90,60 @@ a{
 
 
 .tr-1{
-    padding: 100px;
+
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    background-clip: padding-box;
+    border-right-color: white;
+    border-left-color: white;
+    font-family: Montserrat;
+    text-transform: uppercase;
+    font-weight: 900;
     background-color: white;
     text-align: left;
-    font-size: 12pt;
-    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: -0.3px;
     color: #0B3157;
-    width: 100%;
+
 }
 
 .tr-2{
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    background-clip: padding-box;
+    border-color: #45B4B7;
+    border-left-color: white;
+    border-right-color: white;
     text-align: left;
+    font-family: Montserrat;
     background-color: #45B4B7;
     text-transform: uppercase;
     font-weight: 500;
-    letter-spacing: -0.3pt;
-    font-size: 14pt;
+    letter-spacing: -0.3px;
+    font-size: 14px;
     color: lightgrey;
-    width: 100%;
 }
 
 .tr-3{
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    background-clip: padding-box;
+    border-right-color: white;
+    border-left-color: white;
+    border-bottom-color: #45B4B7;
+    text-align: left;
+    font-family: Montserrat;
     font-weight: 700;
     background-color: #45B4B7;
     color: white;
-    font-size: 16pt;
-    letter-spacing: -0.3pt;
-    width: 100%;
+    font-size: 16px;
+    letter-spacing: -0.3px;
 }
 
 .tr-4{
     background-color: white;
-    width: 100%;
 }
 
 .tableNextCalendar{
@@ -122,30 +151,36 @@ a{
     text-align: center;
     background-color: #0B3157;
     border: none;
-    width: 100%;
     height: 40px;
+    width: 100%;
+    min-width: 375px;
+    max-width: 1000px;
+    margin: auto;
 }
+
+
 
 .tableCalendar{
+    min-width: 375px;
+    max-width: 1000px;
     table-layout: fixed;
     text-align: center;
-    width: 100%;
-
+    border-collapse: separate;
+    margin: auto;
 }
 
-.tableCalendar tr{
-    padding-left: 20px;
-    padding-right: 20px;
 
+.tableCalendar tbody{
+    min-width: 375px;
 }
 
 
 .tableCalendar th {
-    height: 20pt;
-    width: 40pt;
+    font-family: Montserrat;
+    height: 20px;
+    width: 40px;
     opacity: 50%;
     border: 50px;
-    border-color: white;
     text-transform: uppercase;
     color: darkgray;
     background-color: #0B3157;
@@ -154,19 +189,63 @@ a{
     font-weight: 400;
 }
 
+
+.tableCalendar tr{
+    min-width: 375px;
+    margin: auto;
+    text-align: center;
+}
+
+
+
 .tableCalendar td{
     color: #0B3157;
-    text-align: center;
-    height: 40pt;
-    width: 40pt;
+    height: 40px;
+    width: 40px;
+    font-family: Montserrat;
+    size:16px;
+    font-weight: normal;
+    border: 5px solid transparent;
+    background-clip: padding-box;
+    border-collapse: separate;
+    border-color: white;
 }
+
 
 .tableCalendar td:nth-of-type(6) {
     color:  red;
 }
 
+
 .tableCalendar td:nth-of-type(7) {
-    color: red;
+    color:  red;
+    height: 40px;
+    width: 40px;
+    border-right: 14px solid transparent;
+    background-clip: border-box;
+    border-collapse: separate;
+    border-color: white;
+}
+
+.tableCalendar td:nth-of-type(1) {
+    border-left: 16px solid transparent;
+    background-clip: padding-box;
+    border-collapse: separate;
+}
+
+
+.tableCalendar th:nth-of-type(7) {
+    border-right: 14px solid transparent;
+    background-clip: padding-box;
+    border-color: #0B3157;
+    border-collapse: separate;
+}
+
+.tableCalendar th:nth-of-type(1) {
+    border-left: 16px solid transparent;
+    border-color: #0B3157;
+    background-clip: padding-box;
+    border-collapse: separate;
 }
 
 .tableCalendar td:hover{
@@ -208,29 +287,28 @@ a{
 
 .point-day{
     width: 100%;
-    height: 100%;
     font-weight: bold;
     text-align: center;
     color: red;
-    padding: 0px;
-    margin: 0px;
     size: 0px;
 }
 
 .dayT{
+    display: block;
+    width: 40px;
+    height: 40px;
     line-height: 0.9em;
     font-weight: 400;
     font-weight: bold;
+    margin: auto;
+    text-align: center;
 }
 
 .event-day{
     width: 100%;
-    height: 100%;
     font-weight: bold;
     text-align: center;
     color: royalblue;
-    padding: 0px;
-    margin: 0px;
     size: 0px;
 }
 
@@ -239,6 +317,7 @@ a{
     text-transform: uppercase;
     display: inline-block;
     color: #48C1C2;
+    font-family: Montserrat;
     font-weight: 700;
     border: 2px solid;
     transition: 0.2s;
@@ -251,7 +330,6 @@ a{
 
 .button-1:hover {
     background-color: #45B4B7;
-
     color: white;
 }
 
@@ -260,7 +338,8 @@ a{
     text-transform: uppercase;
     display: inline-block;
     color: white;
-    font-weight: 800;
+    font-family: Montserrat;
+    font-weight: 900;
     border: 2px solid;
     transition: 0.2s;
     border-radius: 0%;
@@ -276,6 +355,7 @@ a{
 }
 
 .button-3 {
+    font-family: Montserrat;
     background-color: #0B3157;
     display: inline-block;
     padding-right: 11px;
