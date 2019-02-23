@@ -27,7 +27,11 @@ class CCalendar extends Component {
         this.twCalendar = this.twCalendar.bind(this)
         this.getId=this.getId.bind(this)
         this.nowMonth() // определение сегодняшней даты
+    }
 
+    shouldComponentUpdate(){
+        this.state.events=this.props.data.sort((a,b) => moment(a.date, "DD.MM.YYYY") - moment(b.date, "DD.MM.YYYY"));
+        return true;
     }
 
     activeMenu(){ // выдвигающееся меню
@@ -297,7 +301,6 @@ class CCalendar extends Component {
             }
         }
 
-
     render () {
         this.cloneDate()
         var headCalendar = <tr>
@@ -354,6 +357,7 @@ class CCalendar extends Component {
         </table>
         var tableEvent =  <table className="tableEvent">{this.renderEvent()}</table>
         return (
+
             <div id="layer1">
                 {nextCalendar}
                 {monthCalendar}
