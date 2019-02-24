@@ -8,18 +8,18 @@ class App extends Component {
     constructor() {
         super();
         this.dataCalendar = [
-            {date: "20.02.2019", events:[{name:"Football", body:"Game Germany - Italy", time: "20:00"}, {name:"Football", body:"Game R - G", time: "20:00"}]},
+            {date: "20.02.2019", events:[{name:"Football", body:"Game Germany - Italy", time: "20:00"}, {name:"Football", body:"Game Spain - England", time: "20:00"}]},
             {date: "03.02.2019", events:[{name:"Cinema", body:"Interstellar", time: "20:00"}]},
-            {date: "07.02.2019", events:[{name:"Cinema", body:"Interstellar", time: "19:00"}]},
-            {date: "10.02.2019", events:[{name:"Cinema", body:"Interstellar", time: "21:00"}]},
-            {date: "11.02.2019", events:[{name:"Cinema", body:"Interstellar", time: "20:00"}]},
-            {date: "21.02.2019", events:[{name:"Football", body:"Game Italy - Germany", time: "20:00"}, {name:"Football", body:"Game G - R", time: "21:00"}]},
+            {date: "07.02.2019", events:[{name:"Cinema", body:"Memento", time: "19:00"}]},
+            {date: "10.02.2019", events:[{name:"Cinema", body:"Insomnia", time: "21:00"}]},
+            {date: "11.02.2019", events:[{name:"Cinema", body:"Batman Begins", time: "20:00"}]},
+            {date: "21.02.2019", events:[{name:"Football", body:"Game Italy - Germany", time: "20:00"}, {name:"Football", body:"Game England - Spain", time: "21:00"}]},
             {date: "15.02.2019", events:[{name:"Cinema", body:"Bad boys", time: "19:00"}]},
             {date: "18.02.2019", events:[{name:"Cinema", body:"Aladdin disney", time: "19:00"}]},
-            {date: "25.02.2019", events:[{name:"Cinema", body:"Aladdin disney", time: "21:00"}]},
-            {date: "07.03.2019", events:[{name:"Cinema", body:"Interstellar", time: "19:00"}]},
-            {date: "10.03.2019", events:[{name:"Cinema", body:"Interstellar", time: "21:00"}]},
-            {date: "18.03.2019", events:[{name:"Cinema", body:"Aladdin disney", time: "19:00"}]},
+            {date: "25.02.2019", events:[{name:"Cinema", body:"The Prestige", time: "21:00"}]},
+            {date: "07.03.2019", events:[{name:"Cinema", body:"The Dark Knight", time: "19:00"}]},
+            {date: "10.03.2019", events:[{name:"Cinema", body:"Inception", time: "21:00"}]},
+            {date: "18.03.2019", events:[{name:"Cinema", body:"Dunkirk", time: "19:00"}]},
         ]
         this.state = {value: "", name:"", body:"", time:"" };
         this.handleChange = this.handleChange.bind(this);
@@ -85,25 +85,34 @@ class App extends Component {
         document.getElementById("name-3").style.backgroundColor = "#E8E9EB"
         document.getElementById("name-4").style.backgroundColor = "#E8E9EB"
         document.getElementById("name-5").style.backgroundColor = "#E8E9EB"
+        document.getElementById("name-1").style.opacity = 0.5;
+        document.getElementById("name-3").style.opacity = 0.5;
+        document.getElementById("name-4").style.opacity = 0.5;
+        document.getElementById("name-5").style.opacity = 0.5;
+
     }
 
     selectBlock(){
         this.noSelectBlock()
         document.getElementById("name-1").style.backgroundColor = "white"
+        document.getElementById("name-1").style.opacity = 1
 
     }
     selectBlock2(){
         this.noSelectBlock()
         document.getElementById("name-3").style.backgroundColor = "white"
+        document.getElementById("name-3").style.opacity = 1;
 
     }
     selectBlock3(){
         this.noSelectBlock()
         document.getElementById("name-4").style.backgroundColor = "white"
+        document.getElementById("name-4").style.opacity = 1;
     }
     selectBlock4(){
         this.noSelectBlock()
         document.getElementById("name-5").style.backgroundColor = "white"
+        document.getElementById("name-5").style.opacity = 1;
     }
 
     layerEvents () {
@@ -119,7 +128,7 @@ class App extends Component {
                     <tr onClick={this.selectBlock2} id = "name-3">
                         <td>Дата события: </td>
                         <td  colspan = "2"><input id="idDate" className="inputText" type="text" value={this.state.value} placeholder="DD.MM.YYYY" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" onChange={this.handleChange}  /></td></tr>
-                    <tr onClick={this.selectBlock3} id = "name-4"><td>Длительность события: </td>
+                    <tr onClick={this.selectBlock3} id = "name-4"><td>Время начала: </td>
                         <td  colspan = "2"><input id="idTime" className="inputText" type="time" value={this.state.time} placeholder="time event" onChange={this.handleTimeChange}  /></td> </tr>
                     <tr id = "name-5" onClick={this.selectBlock4}><td colspan="3">Детали: <p>
                         <input id="idBody" className="inputText" type="text" value={this.state.body} placeholder="description event" onChange={this.handleBodyChange}  /></p></td> </tr>

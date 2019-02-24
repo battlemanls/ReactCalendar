@@ -52,7 +52,7 @@
 
 #layerEvents{
   display: none;
-  background-color: darkgray;
+
 
 
 }
@@ -63,10 +63,14 @@
   background-color: #E8E9EB;
   margin: auto;
   font-family: Montserrat;
+  color: #0B3157;
 }
 
 #layerEvents td{
+  font-family: Montserrat;
   width: 50px;
+
+
 }
 #layerEvents th:nth-of-type(1){
   background-color: #0B3157;
@@ -95,6 +99,7 @@
   padding-top: 5px;
   padding-bottom: 5px;
 
+  border-bottom: 2px solid;
   border-top: 2px solid transparent;
   border-color: darkgray;
 
@@ -104,14 +109,15 @@
 #layerEvents td:nth-of-type(2) {
   text-align: right;
   padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border-top: 2px solid transparent;
   border-color: darkgray;
 }
 
 
-#layerEvents tr:nth-child(2) {
+#layerEvents tr:not(:first-child)  {
+  opacity: 0.5;
 }
 
 .inputText{

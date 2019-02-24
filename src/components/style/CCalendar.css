@@ -1,6 +1,7 @@
 #layer1 {
     position:relative;
     min-width: 375px;
+    background-color: white;
 }
 
 a{
@@ -64,22 +65,19 @@ a{
 }
 
 .tableEvent{
-    padding-right: 25px;
+    padding-right: 12px;
     padding-left: 12px;
     border-color: white;
     min-width: 300px;
     max-width: 1000px;
     margin: auto;
-
-
+    display: grid;
 }
 
 .tableEvent td:nth-of-type(1){
     text-align: left;
     width: 100%;
     padding-left: 10px;
-
-
 }
 
 .tableEvent td:nth-of-type(2){
@@ -111,10 +109,14 @@ a{
     border-top: 10px solid transparent;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
+    border-bottom: 2px solid transparent;
     background-clip: padding-box;
+    border-radius: 2px 2px 0px 0px;                    /* закругление строки */
+    -webkit-border-radius: 2px 2px 0px 0px;
+    -moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    display: inline;
     border-color: #45B4B7;
-    border-left-color: white;
-    border-right-color: white;
     text-align: left;
     font-family: Montserrat;
     background-color: #45B4B7;
@@ -130,8 +132,17 @@ a{
     border-right: 10px solid transparent;
     border-bottom: 10px solid transparent;
     background-clip: padding-box;
-    border-right-color: white;
-    border-left-color: white;
+    margin-bottom: 5px;
+
+    border-radius: 0px 0px 2px 2px;                    /* закругление строки */
+    -webkit-border-radius: 0px 0px 2px 2px;
+    -moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    display: inline;
+
+    border-right-color: #45B4B7;
+    border-left-color: #45B4B7;
+
     border-bottom-color: #45B4B7;
     text-align: left;
     font-family: Montserrat;
@@ -180,7 +191,7 @@ a{
     height: 20px;
     width: 40px;
     opacity: 50%;
-    border: 50px;
+    border: 5px solid transparent;
     text-transform: uppercase;
     color: darkgray;
     background-color: #0B3157;
@@ -194,6 +205,7 @@ a{
     min-width: 375px;
     margin: auto;
     text-align: center;
+
 }
 
 
@@ -221,7 +233,7 @@ a{
     color:  red;
     height: 40px;
     width: 40px;
-    border-right: 14px solid transparent;
+    border-right: 16px solid transparent;
     background-clip: border-box;
     border-collapse: separate;
     border-color: white;
@@ -235,7 +247,7 @@ a{
 
 
 .tableCalendar th:nth-of-type(7) {
-    border-right: 14px solid transparent;
+    border-right: 16px solid transparent;
     background-clip: padding-box;
     border-color: #0B3157;
     border-collapse: separate;
